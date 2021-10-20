@@ -3,6 +3,7 @@ package za.ac.cput.gui.address;
 
 import za.ac.cput.client.Address;
 import za.ac.cput.client.AddressClient;
+import za.ac.cput.util.GenericHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ public class CreateAddress implements ActionListener {
     private JFrame MenuFrame;
     private JPanel panelNorth, panelSouth, panelEast, panelWest, panelCenter;
     private JLabel lblHeading,lblHouseNumber, lblStreet, lblCity, lblZipCode;
-    private JButton btnCreate;
+    private JButton btnCreate ,btnClear ,btnExit;
     private JLabel Filler1, Filler2, Filler3, Filler4, Filler5;
     private Font headingFont;
     private JTextField txtHouseNumber,  txtStreet,txtCity, txtZipCode;
@@ -26,7 +27,7 @@ public class CreateAddress implements ActionListener {
         //Font
         headingFont = new Font("Times new roman", Font.BOLD, 30);
 
-        MenuFrame = new JFrame("CREATE ADDRESS ");
+        MenuFrame = new JFrame("Create Address ");
         panelNorth = new JPanel();
         panelSouth = new JPanel();
         panelEast = new JPanel();
@@ -67,6 +68,11 @@ public class CreateAddress implements ActionListener {
 
         btnCreate = new JButton("Create");
         btnCreate.setBackground(btnColor);
+        btnExit = new JButton("Exit");
+        btnExit.setBackground(btnColor);
+        btnClear = new JButton("Clear");
+        btnClear.setBackground(btnColor);
+
     }
 
     public void setGUI() {
@@ -104,6 +110,8 @@ public class CreateAddress implements ActionListener {
 
         //Panel South:
         panelSouth.add(btnCreate);
+        panelSouth.add(btnClear);
+        panelSouth.add(btnExit);
 
         //Heading
         lblHeading.setFont(headingFont);
@@ -117,6 +125,9 @@ public class CreateAddress implements ActionListener {
 
         //Telling compiler to listen for actions from the buttons:
         btnCreate.addActionListener(this);
+        btnClear.addActionListener(this);
+        btnExit.addActionListener(this);
+
 
         //Set GUI:
         MenuFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -129,7 +140,8 @@ public class CreateAddress implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent f)
     {
-        if(f.getActionCommand().equals("Create")){
+        if(f.getActionCommand().equals("Create"))
+        {
 
 //            private JTextField txtHouseNumber,  txtStreet,txtCity, txtZipCode;
             Address address = new Address();
@@ -141,6 +153,19 @@ public class CreateAddress implements ActionListener {
             AddressClient client = new AddressClient();
             client.createAddress(address);
         }
+
+        if(f.getActionCommand().equals("Clear")){
+            txtHouseNumber.setText("");
+            txtStreet.setText("");
+            txtCity.setText("");
+            txtZipCode.setText("");
+        }
+
+        if(f.getActionCommand().equals("Exit")){
+            MenuFrame.dispose();
+        }
+
+
 
     }
 }

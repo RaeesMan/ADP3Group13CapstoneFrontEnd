@@ -1,22 +1,22 @@
 package za.ac.cput.gui.item;
 
+//Na'eem Mahoney
+//218190751
+//ADP3
+//Group 13
+//Capstone - Front-End
+//AddItemGui
+//Imports
+
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import java.net.*;
 import javax.swing.*;
-
-import netscape.javascript.JSObject;
-import org.json.JSONObject;
-import org.springframework.http.*;
-import org.springframework.web.client.RestTemplate;
-import za.ac.cput.entity.medication.Item;
-import za.ac.cput.factory.medication.ItemFactory;
 import za.ac.cput.util.GenericHelper;
 
 public class AddItemGUI implements ActionListener{
-    private JFrame ItemFrame;
-    private JPanel panelNorth, panelSouth, panelEast, panelWest, panelCenter;
+    //Initializing Components
+    private JFrame AddItemFrame;
+    private JPanel AddItemPanelNorth, AddItemPanelSouth, AddItemPanelEast, AddItemPanelWest, AddItemPanelCenter;
     private JLabel lblHeading;
     private JLabel lblItemName, lblItemType, lblItemPrice, lblItemStock, lbItemID;
     private JTextField txtItemName, txtItemType,txtItemPrice, txtItemStock, txtItemID;
@@ -24,21 +24,23 @@ public class AddItemGUI implements ActionListener{
     private JLabel Filler1, Filler2, Filler3, Filler4, Filler5;
     private Font headingFont;
 
+    //Setting Up GUI Components
     public AddItemGUI(){
         //Font
         headingFont = new Font("Arial", Font.BOLD, 18);
 
-        ItemFrame = new JFrame("Item: ");
-        panelNorth = new JPanel();
-        panelSouth = new JPanel();
-        panelEast = new JPanel();
-        panelWest = new JPanel();
-        panelCenter = new JPanel();
-        panelNorth.setBackground(Color.LIGHT_GRAY);
-        panelEast.setBackground(Color.LIGHT_GRAY);
-        panelSouth.setBackground(Color.LIGHT_GRAY);
-        panelWest.setBackground(Color.LIGHT_GRAY);
-        panelCenter.setBackground(Color.LIGHT_GRAY);
+        //Panels
+        AddItemFrame = new JFrame("Item: ");
+        AddItemPanelNorth = new JPanel();
+        AddItemPanelSouth = new JPanel();
+        AddItemPanelEast = new JPanel();
+        AddItemPanelWest = new JPanel();
+        AddItemPanelCenter = new JPanel();
+        AddItemPanelNorth.setBackground(Color.LIGHT_GRAY);
+        AddItemPanelEast.setBackground(Color.LIGHT_GRAY);
+        AddItemPanelSouth.setBackground(Color.LIGHT_GRAY);
+        AddItemPanelWest.setBackground(Color.LIGHT_GRAY);
+        AddItemPanelCenter.setBackground(Color.LIGHT_GRAY);
 
         //Heading
         lblHeading = new JLabel("1. Add New Item",JLabel.CENTER);
@@ -57,14 +59,14 @@ public class AddItemGUI implements ActionListener{
 
         //Fillers:
         Filler1 = new JLabel("===========");
-        Filler1.setForeground(Color.LIGHT_GRAY);
         Filler2 = new JLabel("===========");
-        Filler2.setForeground(Color.LIGHT_GRAY);
         Filler3 = new JLabel("================================");
-        Filler3.setForeground(Color.LIGHT_GRAY);
         Filler4 = new JLabel("================================");
-        Filler4.setForeground(Color.LIGHT_GRAY);
         Filler5 = new JLabel("================================");
+        Filler1.setForeground(Color.LIGHT_GRAY);
+        Filler2.setForeground(Color.LIGHT_GRAY);
+        Filler3.setForeground(Color.LIGHT_GRAY);
+        Filler4.setForeground(Color.LIGHT_GRAY);
         Filler5.setForeground(Color.LIGHT_GRAY);
 
         //Buttons:
@@ -73,50 +75,52 @@ public class AddItemGUI implements ActionListener{
         btnExit = new JButton("Exit");
     }
 
+    //Setting GUI Layout
     public void setGUI() {
-        panelNorth.setLayout(new GridLayout(2, 1));
-        panelEast.setLayout(new GridLayout(8, 1));
-        panelSouth.setLayout(new GridLayout(1, 3));
-        panelWest.setLayout(new GridLayout(8, 1));
-        panelCenter.setLayout(new GridLayout(9, 1));
-        panelEast.setLayout(new GridLayout(8, 1));
+        //Panel Grids
+        AddItemPanelNorth.setLayout(new GridLayout(2, 1));
+        AddItemPanelEast.setLayout(new GridLayout(8, 1));
+        AddItemPanelSouth.setLayout(new GridLayout(1, 3));
+        AddItemPanelWest.setLayout(new GridLayout(8, 1));
+        AddItemPanelCenter.setLayout(new GridLayout(9, 1));
+        AddItemPanelEast.setLayout(new GridLayout(8, 1));
 
         //Adding the components to the panels:
         //Panel North:
-        panelNorth.add(Filler5);
-        panelNorth.add(lblHeading);
+        AddItemPanelNorth.add(Filler5);
+        AddItemPanelNorth.add(lblHeading);
 
         //Panel West:
-        panelWest.add(Filler1);
+        AddItemPanelWest.add(Filler1);
 
         //Panel Center:
-        panelCenter.add(lblItemName);
-        panelCenter.add(txtItemName);
-        panelCenter.add(lblItemType);
-        panelCenter.add(txtItemType);
-        panelCenter.add(lblItemPrice);
-        panelCenter.add(txtItemPrice);
-        panelCenter.add(lblItemStock);
-        panelCenter.add(txtItemStock);
-        panelCenter.add(Filler4);
+        AddItemPanelCenter.add(lblItemName);
+        AddItemPanelCenter.add(txtItemName);
+        AddItemPanelCenter.add(lblItemType);
+        AddItemPanelCenter.add(txtItemType);
+        AddItemPanelCenter.add(lblItemPrice);
+        AddItemPanelCenter.add(txtItemPrice);
+        AddItemPanelCenter.add(lblItemStock);
+        AddItemPanelCenter.add(txtItemStock);
+        AddItemPanelCenter.add(Filler4);
 
         //Panel East
-        panelEast.add(Filler2);
+        AddItemPanelEast.add(Filler2);
 
         //Panel South:
-        panelSouth.add(btnSave);
-        panelSouth.add(btnClear);
-        panelSouth.add(btnExit);
+        AddItemPanelSouth.add(btnSave);
+        AddItemPanelSouth.add(btnClear);
+        AddItemPanelSouth.add(btnExit);
 
         //Heading
         lblHeading.setFont(headingFont);
 
         //Adding panels to Customer Frame:
-        ItemFrame.add(panelNorth, BorderLayout.NORTH);
-        ItemFrame.add(panelSouth, BorderLayout.SOUTH);
-        ItemFrame.add(panelEast, BorderLayout.EAST);
-        ItemFrame.add(panelCenter, BorderLayout.CENTER);
-        ItemFrame.add(panelWest, BorderLayout.WEST);
+        AddItemFrame.add(AddItemPanelNorth, BorderLayout.NORTH);
+        AddItemFrame.add(AddItemPanelSouth, BorderLayout.SOUTH);
+        AddItemFrame.add(AddItemPanelEast, BorderLayout.EAST);
+        AddItemFrame.add(AddItemPanelCenter, BorderLayout.CENTER);
+        AddItemFrame.add(AddItemPanelWest, BorderLayout.WEST);
 
         //Telling compiler to listen for actions from the buttons:
         btnSave.addActionListener(this);
@@ -124,22 +128,25 @@ public class AddItemGUI implements ActionListener{
         btnExit.addActionListener(this);
 
         //Set GUI:
-        ItemFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        ItemFrame.pack();
-        ItemFrame.setSize(400, 400);
-        ItemFrame.setLocationRelativeTo(null);
-        ItemFrame.setVisible(true);
+        AddItemFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        AddItemFrame.pack();
+        AddItemFrame.setSize(400, 400);
+        AddItemFrame.setLocationRelativeTo(null);
+        AddItemFrame.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
+        //When Save Button is clicked
         if(e.getActionCommand().equals("Save")){
 
+            //Store textfield text in string
             String itemName = txtItemName.getText();
             String itemType = txtItemType.getText();
             String itemPrice = txtItemPrice.getText();
             String itemStock = txtItemStock.getText();
 
-            boolean priceCheck, stockCheck, typecheck;
+            //booleans for checking valid input
+            boolean nameCheck, priceCheck, stockCheck, typecheck;
 
             if(itemType==null || !itemType.matches("[a-zA-Z]+")){
                 typecheck = false;
@@ -147,6 +154,14 @@ public class AddItemGUI implements ActionListener{
             }
             else{
                 typecheck = true;
+            }
+
+            if(!itemName.matches("[a-zA-Z0-9]+")){
+                nameCheck = false;
+                txtItemName.setText("Invalid Name Input");
+            }
+            else{
+                nameCheck = true;
             }
 
             if(GenericHelper.validNumber(itemPrice)){
@@ -165,13 +180,17 @@ public class AddItemGUI implements ActionListener{
                 txtItemStock.setText("Invalid Stock Input");
             }
 
-            if(typecheck && priceCheck && stockCheck){
+            //If all are valid then call save httpmethod
+            if(nameCheck && typecheck && priceCheck && stockCheck){
                 double ditemPrice = Double.parseDouble(itemPrice);
                 double ditemStock = Double.parseDouble(itemStock);
+                httpmethods httpmethods = new httpmethods();
+                httpmethods.saveItem(itemName, itemType, ditemPrice, ditemStock);
             }
 
         }
 
+        //When clear button is clicked
         if(e.getActionCommand().equals("Clear")){
             txtItemName.setText("");
             txtItemType.setText("");
@@ -179,10 +198,10 @@ public class AddItemGUI implements ActionListener{
             txtItemStock.setText("");
         }
 
+        //When exit button is clicked
         if(e.getActionCommand().equals("Exit")){
-            ItemFrame.dispose();
+            AddItemFrame.dispose();
         }
     }
-
 
 }
